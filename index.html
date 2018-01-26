@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app = "save-app">
+  <head>
+      <base href="/">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+    <link data-require="bootstrap@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <!--APP-->
+    <script src="./app.module.js"></script>
+  </head>
+  <body>
+    <!-- <div>
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1>Hello {{yourName}}!</h1>
+    </div>
+     -->
+     <header-nav></header-nav>
+     <ui-view></ui-view>
+  </body>
+</html>
