@@ -1,0 +1,62 @@
+
+    <section class="container main-body-wrapper">
+      <!--Heading - body-->
+      <div class=" head-banner">
+        <h3>Welcome to the NetApp Product Security Team</h3>
+      </div>
+      <!--Main Section-->
+      <!--Option - Products-->
+      <div class="option-wrapper">
+        <div class="form-group">
+          <select class="form-control" id="sel1">
+            <option>Select a product</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </div>
+      <!--Option - Products-->
+      <!--Buttons - Path PSB | P-->
+      <div class="path-wrapper row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <button class="btn btn-lg btn-primary">
+          PSB
+        </button>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <button class="btn btn-lg btn-primary">
+          PSIRT
+        </button>
+        </div>
+      </div>
+    </section>
+    <style>
+        .path-wrapper {
+         display : none;
+        }
+        .path-wrapper div {
+          margin-bottom : 10px;
+        }
+        .path-wrapper div button {
+          width : 100%;
+        }
+    </style>
+
+    <script>
+    // Code goes here
+$(document).ready(function() {
+  selectChangeDetection();
+});
+
+function selectChangeDetection() {
+  $('select').on('change', function (e) {
+      var valueSelected = this.value;
+      if(valueSelected != "Select a product") {
+        $(".path-wrapper").css({"display" : "block"});
+      }else {
+        $(".path-wrapper").css({"display" : "none"});
+      }
+  }); 
+};
+    </script>

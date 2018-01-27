@@ -5,27 +5,34 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
+        .state('login', {
+            url : '/login',
+            templateUrl : './templates/login/login.html'
+        })
         .state('home', {
             url: '/home',
-            template: `<h1>Fuck You</h1>`
+            //template: `<h1>Fuck You</h1>`
+            templateUrl : './templates/firstpage/firstpage.html'
         })
         .state('secondpage', {
             url : '/psb',
             templateUrl : './templates/secondpage.template.html',
-            controller : 'psbController'
-            // we'll get to this in a bit       
+            controller : 'psbController'                
         })
         
         .state('thirdpage', {
-            // we'll get to this in a bit       
+            url : '/thirdpage',
+            templateUrl : './templates/thirdpage/thirdpage.html'       
         })
         
         .state('fourthpage', {
-            // we'll get to this in a bit       
+            url : '/fourthpage',
+            templateUrl : './templates/fourthpage/fourthpage.html'
         })
         
         .state('submission', {
-            // we'll get to this in a bit       
+            url : '/thanks',
+            templateUrl : './templates/fifthpage/fifthpage.html'
         });
         $locationProvider.html5Mode(true);
 });
@@ -36,7 +43,6 @@ app.directive("headerNav", function() {
         templateUrl : './templates/navbar.html'
     }
 })
-
 
 app.controller("psbController" , function($scope , $state) {
     $scope.changeRoutes = function() {
