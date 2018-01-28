@@ -41,7 +41,9 @@
                 <option>APPLICABLE</option>
                 <option>Not Yet Answered</option>
             </select></td>
-            <td><input type = "text" placeholder="Put in justification" /></td>
+            <td><input 
+              ng-model=""
+              type = "text" placeholder="Put in justification" /></td>
           </tr>
         </tbody>
       </table>
@@ -49,7 +51,7 @@
   </section>
   <footer>
     <div class="footer-btn container">
-      <button class="btn btn-lg btn-primary pull-right">Next</button>
+      <button class="btn btn-lg btn-primary pull-right" ng-click="submitPsbForm()">Next</button>
     </div>
   </footer>
 

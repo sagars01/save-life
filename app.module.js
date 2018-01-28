@@ -1,5 +1,21 @@
 var app = angular.module("save-app" , ['ui.router']);
 
+// Run FUnction
+
+app.run(['mainService' , '$state' , function(mainService , $state){
+    
+    //authorizationRouter();
+    // function authorizationRouter(){
+    //     mainService.authService().then(function(response){
+    //         var loginStatus = response[0].Logged_in;
+    //         console.log(loginStatus);
+    //         if(loginStatus !== true) {
+    //             $state.go("login", {reload : true});
+    //         }
+    //     })
+    // }
+    }])//Run
+
 app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
 
     $urlRouterProvider.otherwise('/home');
@@ -7,27 +23,31 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
     $stateProvider
         .state('login', {
             url : '/login',
-            templateUrl : './templates/login/login.html'
+            templateUrl : './templates/login/login.html',
+            controller : 'loginController'
+
         })
         .state('home', {
             url: '/home',
             //template: `<h1>Fuck You</h1>`
-            templateUrl : './templates/firstpage/firstpage.html'
+            templateUrl : './templates/firstpage/firstpage.html',
+            controller : 'productController'
         })
-        .state('secondpage', {
-            url : '/psb',
-            templateUrl : './templates/secondpage.template.html',
-            controller : 'psbController'                
+        .state('preengage', {
+            url : '/preengage',
+            templateUrl : './templates/secondpage/secondpage.html',
+            controller : 'preengageController'            
         })
         
-        .state('thirdpage', {
-            url : '/thirdpage',
+        .state('psb', {
+            url : '/psb',
             templateUrl : './templates/thirdpage/thirdpage.html'       
         })
         
-        .state('fourthpage', {
-            url : '/fourthpage',
-            templateUrl : './templates/fourthpage/fourthpage.html'
+        .state('psbform', {
+            url : '/psbform',
+            templateUrl : './templates/fourthpage/fourthpage.html',
+            controller : 'psbFormController'
         })
         
         .state('submission', {
@@ -44,8 +64,3 @@ app.directive("headerNav", function() {
     }
 })
 
-app.controller("psbController" , function($scope , $state) {
-    $scope.changeRoutes = function() {
-        $state.go("home");
-    }
-})

@@ -8,11 +8,11 @@
       <!--Option - Products-->
       <div class="option-wrapper">
         <div class="form-group">
-          <select class="form-control" id="sel1">
+          <select ng-change="selectedProductChange()" ng-model="selectedProduct" class="form-control" id="sel1">
             <option>Select a product</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+            <option ng-repeat="product in productList" ng-value="product.Product_id">
+              {{product.Product}}
+            </option>
           </select>
         </div>
       </div>
@@ -20,13 +20,13 @@
       <!--Buttons - Path PSB | P-->
       <div class="path-wrapper row">
         <div class="col-xs-12 col-sm-6 col-md-6">
-          <button class="btn btn-lg btn-primary">
-          PSB
+          <button class="btn btn-lg btn-primary" ng-click = "redirectToQuestions('pre')">
+          Pre-Engagement
         </button>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
-          <button class="btn btn-lg btn-primary">
-          PSIRT
+          <button class="btn btn-lg btn-primary" ng-click="redirectToQuestions('psb')">
+          PSB
         </button>
         </div>
       </div>
@@ -42,21 +42,3 @@
           width : 100%;
         }
     </style>
-
-    <script>
-    // Code goes here
-$(document).ready(function() {
-  selectChangeDetection();
-});
-
-function selectChangeDetection() {
-  $('select').on('change', function (e) {
-      var valueSelected = this.value;
-      if(valueSelected != "Select a product") {
-        $(".path-wrapper").css({"display" : "block"});
-      }else {
-        $(".path-wrapper").css({"display" : "none"});
-      }
-  }); 
-};
-    </script>

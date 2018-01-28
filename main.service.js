@@ -4,10 +4,102 @@ mainService.$inject = ['$http' , '$q'];
 
 function mainService($http, $q) {
     return {
-        loginService : _loginService
+        loginService : _loginService,
+        authService : _authService,
+        productList : _productList,
+        preengage : _preengage,
+    }
+    function _preengage(method , data) {
+        var deferred = $q.defer();
+        if(method == 'GET'){
+            $http({
+                url:  "http://localhost:4000/preengage",
+                method: 'GET',
+                cache : false
+            })
+                .then(function(response){
+                    deferred.resolve(response.data);
+                })
+                .catch(function(response){
+                    deferred.reject(response);
+                });
+                return deferred.promise;
+        }else if(method == 'POST') {
+            $http({
+                url:  "http://localhost:4000/preengage",
+                method: 'POST',
+                data : data,
+                cache : false
+            })
+                .then(function(response){
+                    deferred.resolve(response.data);
+                })
+                .catch(function(response){
+                    deferred.reject(response);
+                });
+                return deferred.promise;
+        }
     }
 
-    function _loginService(logData) {
-        $http.post("" , logData);
+    function _productList(method , data) {
+        var deferred = $q.defer();
+        var dataObject = {};
+        var url = "http://localhost:4000/welcome";
+        if(method == 'POST') {
+            $http({
+                url : url,
+                method : 'POST',
+                data : data,
+                cache : false  
+               })
+                   .then(function(response){
+                       deferred.resolve(response.data);
+                   })
+                   .catch(function(response){
+                       deferred.reject(response);
+                   });
+                   return deferred.promise;
+        }else if(method == 'GET'){
+        $http({
+         url : url,
+         method : 'GET',
+         cache : false   
+        })
+            .then(function(response){
+                deferred.resolve(response.data);
+            })
+            .catch(function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+    }
+
+    function _loginService(loginData) {
+        var deferred = $q.defer();
+        $http({
+            url:  "http://localhost:4000/login",
+            method: 'POST',
+            data : loginData,
+            cache : false
+        })
+            .then(function(response){
+                deferred.resolve(response.data);
+            })
+            .catch(function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+    }
+
+    function _authService() {
+        var deferred = $q.defer();
+        $http.get("http://localhost:4000/")
+            .then(function(response) {
+                deferred.resolve(response.data)
+            }).catch(function(reject){
+                deferred.reject(reject)
+            })
+        return deferred.promise
     }
 }

@@ -1,4 +1,5 @@
-  <section class="container main-body-wrapper">
+
+<section class="container main-body-wrapper">
     
     <div class = "head-banner">
       <h3>Pre-Engagement</h3>
@@ -13,48 +14,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Ascertain development tools, language, IDE, team size and release cadence?</td>
+          <!--Questionaire-->
+          <tr ng-repeat="question in Questionaires">
+            <td>{{question.Question}}</td>
             <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>Gather information on how testing is being performed for non-security related requirements. This will help us to find optimal integration points for SDL without much disruption to current workflow [ProdOps Security SDL team member to drive this discussion</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>How compliance related requirements are currently being driven?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          <tr>
-            <td>How ecosystem dependencies (i.e. components that this product is dependent on) are coordinated in relation to planned set features in this product?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          <tr>
-            <td>How security related requirements are tracked, considered and worked in current releases?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          <tr>
-            <td>How security related requirements are tracked, considered and worked in current releases?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
+              <input ng-model="question.Question_response" type = "text" placeholder = "Response"/>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <!--Q & A table end-->
+    <!--Q & A table end ng-blur="showResponse()"-->
     
     <!--Milestone and Date of Completion-->
     
@@ -68,42 +38,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Ascertain development tools, language, IDE, team size and release cadence?</td>
+          <tr ng-repeat="milestone in Milestones">
+            <td>{{milestone.Milestone}}</td>
             <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>Gather information on how testing is being performed for non-security related requirements. This will help us to find optimal integration points for SDL without much disruption to current workflow [ProdOps Security SDL team member to drive this discussion</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>How compliance related requirements are currently being driven?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          <tr>
-            <td>How ecosystem dependencies (i.e. components that this product is dependent on) are coordinated in relation to planned set features in this product?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          <tr>
-            <td>How security related requirements are tracked, considered and worked in current releases?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
-            </td>
-          </tr>
-          <tr>
-            <td>How security related requirements are tracked, considered and worked in current releases?</td>
-            <td>
-              <input type = "text" placeholder = "Response"/>
+              <input ng-model="milestone.response" type = "text" placeholder = "Response"/>
             </td>
           </tr>
         </tbody>
@@ -116,7 +54,7 @@
     <div class = "mom-wrapper">
       <div class="form-group">
         <label for="comment">Minutes of Meeting:</label>
-        <textarea class="form-control" rows="5" id="mom"
+        <textarea ng-model="response[0].Mom" class="form-control" rows="5" id="mom"
         placeholder = "Minutes of Meeting"
         ></textarea>
       </div>
@@ -126,7 +64,7 @@
     <div class = "donp-wrapper">
       <div class="form-group">
         <label for="comment">Details of Next Phase:</label>
-        <textarea class="form-control" rows="5" id="donp"
+        <textarea ng-model="response[0].Details_phase" class="form-control" rows="5" id="donp"
         placeholder = "Put in your FS Details, admin guide, Architecture Document, DFD"
         ></textarea>
       </div>
@@ -135,9 +73,11 @@
   </section>
   <footer>
     <div class="footer-btn container">
-      <button class="btn btn-lg btn-primary pull-right">Submit</button>
+      <button class="btn btn-lg btn-primary pull-right" ng-click="submitPreEngagementForm()">Submit</button>
     </div>
   </footer>
+
+  </div>
   <style>
   table {
   border : 1px solid #000;
