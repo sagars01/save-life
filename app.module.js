@@ -4,16 +4,16 @@ var app = angular.module("save-app" , ['ui.router']);
 
 app.run(['mainService' , '$state' , function(mainService , $state){
     
-    //authorizationRouter();
-    // function authorizationRouter(){
-    //     mainService.authService().then(function(response){
-    //         var loginStatus = response[0].Logged_in;
-    //         console.log(loginStatus);
-    //         if(loginStatus !== true) {
-    //             $state.go("login", {reload : true});
-    //         }
-    //     })
-    // }
+    authorizationRouter();
+    function authorizationRouter(){
+        mainService.logoutService().then(function(response){
+            var loginStatus = response[0].Logged_in;
+            console.log(loginStatus);
+            if(loginStatus !== true) {
+                $state.go("login", {reload : true});
+            }
+        })
+    }
     }])//Run
 
 app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
@@ -29,7 +29,6 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
         })
         .state('home', {
             url: '/home',
-            //template: `<h1>Fuck You</h1>`
             templateUrl : './templates/firstpage/firstpage.html',
             controller : 'productController'
         })
@@ -57,10 +56,4 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
         $locationProvider.html5Mode(true);
 });
 
-app.directive("headerNav", function() {
-    return {
-        restrict : 'E',
-        templateUrl : './templates/navbar.html'
-    }
-})
 

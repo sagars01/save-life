@@ -8,39 +8,20 @@ app.controller("preengageController" , function($scope , $state, mainService) {
     }
 
     $scope.submitPreEngagementForm = function() {
-        //$scope._init('POST' , $scope.response)
-        console.log($scope.response);
+        $scope._init('POST' , angular.toJson($scope.response));
+        // console.log(angular.toJson($scope.response));
     }
     
     $scope._init = function (method , data) {
-        mainService.preengage(method).then(function(response) {
+        mainService.preengage(method, data).then(function(response) {
             console.log(response[0].Questionaires);
             $scope.response = response;
             $scope.Questionaires = response[0].Questionaires;
-            $scope.Milestones = response[0].Milestones;        
+            $scope.Milestones = response[0].Milestones;
+            if(data != null) {
+                $state.go("home" , {reload : true});
+            }        
         })
     }
     $scope._init('GET');
 })
-
-    // $scope.milestoneData = {
-    //     Milestone_response : null,
-    //     Milestone_id : null
-    // }
-    // $scope.questionData = {
-    //     Question_response : null,
-    //     Question_id : null
-    // }
-    
-    // $scope.postDataModel = [
-    //     {
-    //         Milestones : [ 
-                
-    //         ],
-    //         Questionaires : [
-                
-    //         ],
-    //         Mom : null,
-    //         Details_phase : null
-    //     }
-    // ]

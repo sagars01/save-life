@@ -2,13 +2,26 @@ app.factory("mainService" , mainService);
 
 mainService.$inject = ['$http' , '$q'];
 
-function mainService($http, $q) {
+function mainService($http, $q) { 
     return {
         loginService : _loginService,
         authService : _authService,
+        logoutService : _logoutService,
         productList : _productList,
         preengage : _preengage,
+    }    
+
+    function _logoutService() {
+        var deferred = $q.defer();
+        $http.get("http://localhost:4000/logout")
+            .then(function(response) {
+                deferred.resolve(response.data)
+            }).catch(function(reject){
+                deferred.reject(reject)
+            })
+        return deferred.promise
     }
+    
     function _preengage(method , data) {
         var deferred = $q.defer();
         if(method == 'GET'){
