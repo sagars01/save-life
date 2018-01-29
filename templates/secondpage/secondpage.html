@@ -1,3 +1,5 @@
+<!--Pre Engagement Form -->
+
 <div class="wrapper" >
   <section class="container main-body-wrapper" ng-form="preEngQuestionform">
     
@@ -33,15 +35,16 @@
         <table class="table" >
         <thead class = "table-header-2">
           <tr>
-            <th>Questionaires</th>
-            <th>Response from Project Team</th>
+            <th>Milestone</th>
+            <th>To be answered</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="milestone in Milestones">
             <td>{{milestone.Milestone}}</td>
             <td>
-              <input ng-required="true" ng-model="milestone.Milestone_response" type = "text" placeholder = "Response"/>
+                <!-- jqdatepicker is the directive to format date object to string -->
+              <input jqdatepicker ng-required="true" ng-model="milestone.Milestone_response" type = "text" placeholder = "Pick a date"/>
             </td>
           </tr>
         </tbody>

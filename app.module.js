@@ -4,16 +4,17 @@ var app = angular.module("save-app" , ['ui.router']);
 
 app.run(['mainService' , '$state' , function(mainService , $state){
     
-    authorizationRouter();
+    
     function authorizationRouter(){
-        mainService.logoutService().then(function(response){
+        mainService.authService().then(function(response){
             var loginStatus = response[0].Logged_in;
             console.log(loginStatus);
-            if(loginStatus !== true) {
+            if(loginStatus == false) {
                 $state.go("login", {reload : true});
             }
         })
     }
+    authorizationRouter();
     }])//Run
 
 app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {

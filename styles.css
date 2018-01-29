@@ -32,6 +32,10 @@ table {
   background : #cecece;
   border-bottom : 1px solid #000;
 }
+.mandatory {
+  color : red;
+}
+
 /*td {*/
 /*  border : 1px solid #000;*/
 /*}*/

@@ -7,7 +7,7 @@ app.directive("headerNav", function() {
 });
 
 
-app.controller("headerController" , function($scope , mainService , $state){
+app.controller("headerController" , function($scope , mainService , $state , $timeout){
     $scope.logout = function() {
         mainService.logoutService().then(function(res){
             $state.go("login" , {reload : true})
@@ -15,5 +15,7 @@ app.controller("headerController" , function($scope , mainService , $state){
             alert("There's some error in server!");
         })
     }
+
+    $timep
     
 })

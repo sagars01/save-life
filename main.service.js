@@ -9,7 +9,35 @@ function mainService($http, $q) {
         logoutService : _logoutService,
         productList : _productList,
         preengage : _preengage,
-    }    
+        psbFormService : _psbFormService
+    }
+    
+    function _psbFormService(method , data) {
+        var deferred = $q.defer();
+        if(method == 'GET') {
+            $http.get("http://localhost:4000/psb")
+            .then(function(response) {
+                deferred.resolve(response.data)
+            }).catch(function(reject){
+                deferred.reject(reject)
+            })
+        return deferred.promise
+        }else if(method == 'POST') {
+            $http({
+                url:  "http://localhost:4000/psb",
+                method: 'POST',
+                data : data,
+                cache : false
+            })
+                .then(function(response){
+                    deferred.resolve(response.data);
+                })
+                .catch(function(response){
+                    deferred.reject(response);
+                });
+                return deferred.promise;
+        } 
+        }
 
     function _logoutService() {
         var deferred = $q.defer();

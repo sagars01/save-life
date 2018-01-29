@@ -12,25 +12,24 @@
             <th>Number</th>
             <th>Requirement</th>
             <th>Why?</th>
-            <th>Status</th>
-            <th>Justification</th>
+            <th>Status<span class="mandatory">*</span></th>
+            <th>Justification<span class="mandatory">*</span></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>ASR-1</td>
-            <td>The system must monitor and record successful and unsuccessful login attempts</td>
-            <td>The system must monitor and record login attempts to assist with investigating an intrusion. If an attacker gains access to a NetApp product in the field, the Customer Security department needs to retrieve a list of when accounts logged in to identify compromised accounts.</td>
-            <td><select>
-                <option>PASS</option>
-                <option>FAIL</option>
-                <option>BACKLOG</option>
-                <option>APPLICABLE</option>
-                <option>Not Yet Answered</option>
-            </select></td>
-            <td><input type = "text" placeholder="Put in justification" /></td>
+        <tbody ng-form = "psbForm">
+          <tr ng-repeat="tableData in tableDataIterator">
+            <td>{{tableData.psb_id}}</td>
+            <td>{{tableData.requirement}}</td>
+            <td>{{tableData.reason}}</td>
+            <td>
+              <select ng-model="tableData.status" ng-required = "true"> 
+                <option 
+                 ng-repeat="statusOption in statusOptions">{{statusOption}}</option>
+              </select>
+            </td>
+            <td><input ng-required="true" ng-model="tableData.justification" type = "text" placeholder="Put in justification" /></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>ASR-10</td>
             <td>For command-line authentication, the root account should not be permitted to login remotely</td>
             <td>The root account is the highest privileged account within our product. We need to provide multiple layers of protection to insulate the root account from being compromised.</td>
@@ -44,14 +43,14 @@
             <td><input 
               ng-model=""
               type = "text" placeholder="Put in justification" /></td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
   </section>
   <footer>
     <div class="footer-btn container">
-      <button class="btn btn-lg btn-primary pull-right" ng-click="submitPsbForm()">Next</button>
+      <button class="btn btn-lg btn-primary pull-right" ng-disabled="psbForm.$invalid" ng-click="submitPsbForm()">Submit</button>
     </div>
   </footer>
 
