@@ -1,0 +1,81 @@
+<div class="wrapper">
+    <section class="container main-body-wrapper" ng-form="preEngQuestionform">
+      <div class="head-banner">
+        <h3>Admin Task/ Workspace</h3>
+      </div>
+      <!--Q & A table -->
+      <div class="first-table">
+        <table class="table">
+          <thead class="table-header-2">
+            <tr>
+              <td>
+                <select>
+                  <option>Product</option>
+                  <option>WFA</option>
+                  <option>ONTAP</option>
+                  <option>OCUM</option>
+                  <option>WFA API</option>
+                </select>
+              </td>
+              <td>
+                <select>
+                  <option>Version</option>
+                  <option>1.0</option>
+                  <option>2.0</option>
+                  <option>3.0</option>
+                  <option>4.0</option>
+                </select>
+              </td>
+              <th>
+                <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-lg btn-primary pull-right" ng-click="submitPreEngagementForm()">Register Product</button>
+              </th>
+              <th>
+                <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-lg btn-primary pull-right" ng-click="submitPreEngagementForm()">Modify Template</button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--Questionaire-->
+            <tr>
+              <td>Pre-Engagement</td>
+              <td>
+                <a href="https://">New</a>
+                <a href="https://">View</a>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr >
+              <td>PSB</td>
+              <td>
+                <a href="https://">View</a>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Help</td>
+              <td>
+                <a href="https://">View</a>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>POC</td>
+              <td>
+                <a href="https://">View</a>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-btn container">
+        <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-primary pull-right" ng-click="submitPreEngagementForm()">Download Attachment</button>
+      </div>
+    </footer>
+  </div>    

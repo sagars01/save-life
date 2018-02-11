@@ -7,7 +7,7 @@ app.directive("headerNav", function() {
 });
 
 
-app.controller("headerController" , function($scope , mainService , $state , $timeout){
+app.controller("headerController" , function($rootScope , $scope , mainService , $state , $location, $timeout){
     $scope.logout = function() {
         mainService.logoutService().then(function(res){
             $state.go("login" , {reload : true})
@@ -16,6 +16,4 @@ app.controller("headerController" , function($scope , mainService , $state , $ti
         })
     }
 
-    $timep
-    
 })

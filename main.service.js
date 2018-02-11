@@ -9,7 +9,7 @@ function mainService($http, $q) {
         logoutService : _logoutService,
         productList : _productList,
         preengage : _preengage,
-        psbFormService : _psbFormService
+        psbFormService : _psbFormService,
     }
     
     function _psbFormService(method , data) {

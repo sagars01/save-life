@@ -1,7 +1,8 @@
 app.controller("loginController" , function($scope , $http, $state, mainService) {
     $scope.loginData = {
-        
+      // Stores the Login Data  
     };
+    $scope.getAdmin = true;
     $scope.loginPrimary = function() {
         $http({
             method : 'POST',
@@ -9,7 +10,9 @@ app.controller("loginController" , function($scope , $http, $state, mainService)
             data : $scope.loginData
         }).then(function(response) {
             var loginState = response.data[0];
-            if(loginState.Logged_in) {
+            if(loginState.Logged_in && loginState.Is_admin == 1) {
+                $state.go("dashboard");
+            }else {
                 $state.go("home");
             }
         })

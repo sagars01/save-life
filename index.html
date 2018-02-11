@@ -20,13 +20,16 @@
     <!--APP-->
     <script src="./app.module.js"></script>
     <script src="main.service.js"></script>
+    <script src="./base.controller.js"></script>
     <script src="./templates/login/login.controller.js"></script>
     <script src="./templates/firstpage/productList.controller.js"></script>
     <script src="./templates/secondpage/preengage.controller.js"></script>
     <script src="./templates/fourthpage/psbform.controller.js"></script>
+    <script src="./templates/admin-dashboard/dashboard.controller.js"></script>
     <script src="header.controller.js"></script>
+    <script src="./extra.js"></script>
   </head>
-  <body>
+  <body ng-controller="baseCtrl">
      <header-nav></header-nav>
      <ui-view></ui-view>
   </body>

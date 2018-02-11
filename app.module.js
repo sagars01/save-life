@@ -1,23 +1,34 @@
+'use strict';
 var app = angular.module("save-app" , ['ui.router']);
 
 // Run FUnction
+// angular.module("save-app").run(
+//     function ($rootScope, $state, $transitions , $location , $timeout, mainService ) {
+//         $transitions.onStart({to:'*'}, function ($state){
+//             // do stuff on every transition such as change page title [global scope here]
+//             // console.log("Hi");
+//             var stateCounter = 0;
+//             mainService.authService().then(function(response){
+//                 if(response[0].Logged_in == true && response[0].Logged_in != null ) {
+//                     // Do Nothing                    
+//                 }else {
+//                     $timeout(function(){
+//                         $location.path("/login");
+//                     })
+//                 }
+//             }).catch(function(err){
+//                 $state.go("login");
+//             })
+//         }
+//     )
+// })
 
-app.run(['mainService' , '$state' , function(mainService , $state){
-    
-    
-    function authorizationRouter(){
-        mainService.authService().then(function(response){
-            var loginStatus = response[0].Logged_in;
-            console.log(loginStatus);
-            if(loginStatus == false) {
-                $state.go("login", {reload : true});
-            }
-        })
-    }
-    authorizationRouter();
-    }])//Run
 
-app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
+app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $transitionsProvider , mainServiceProvider) {
+
+    $transitionsProvider.onStart({ to: '**' }, function(transtion) {
+        // transtion.injector().get('$rootScope').ngProgress.start();
+    })
 
     $urlRouterProvider.otherwise('/home');
 
@@ -32,6 +43,14 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
             url: '/home',
             templateUrl : './templates/firstpage/firstpage.html',
             controller : 'productController'
+        })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl : './templates/admin-dashboard/dashboard.template.html',
+            controller : 'dashboardController',
+            resolve : function() {
+                console.log("true");
+            }
         })
         .state('preengage', {
             url : '/preengage',
@@ -54,7 +73,7 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider) {
             url : '/thanks',
             templateUrl : './templates/fifthpage/fifthpage.html'
         });
+
         $locationProvider.html5Mode(true);
 });
-
 
