@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <section class="container main-body-wrapper" ng-form="preEngQuestionform">
+    <section class="container main-body-wrapper">
       <div class="head-banner">
         <h3>Admin Task/ Workspace</h3>
       </div>
@@ -27,10 +27,10 @@
                 </select>
               </td>
               <th>
-                <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-lg btn-primary pull-right" ng-click="submitPreEngagementForm()">Register Product</button>
+                <button class="btn btn-lg btn-primary pull-right" ng-click="goToRegister()">Register Product</button>
               </th>
               <th>
-                <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-lg btn-primary pull-right" ng-click="submitPreEngagementForm()">Modify Template</button>
+                <button class="btn btn-lg btn-primary pull-right" ng-click="goToModify()">Modify Template</button>
               </th>
             </tr>
           </thead>
@@ -39,8 +39,8 @@
             <tr>
               <td>Pre-Engagement</td>
               <td>
-                <a href="https://">New</a>
-                <a href="https://">View</a>
+                <a ui-sref = "preengage">New</a>
+                <a ui-sref = "preengage">View</a>
               </td>
               <td></td>
               <td></td>
@@ -48,7 +48,7 @@
             <tr >
               <td>PSB</td>
               <td>
-                <a href="https://">View</a>
+                <a ui-sref = "psbform">View</a>
               </td>
               <td></td>
               <td></td>
@@ -56,7 +56,7 @@
             <tr>
               <td>Help</td>
               <td>
-                <a href="https://">View</a>
+                <a ui-sref = "psb">View</a>
               </td>
               <td></td>
               <td></td>
@@ -64,7 +64,7 @@
             <tr>
               <td>POC</td>
               <td>
-                <a href="https://">View</a>
+                <a ui-sref = "poc">View</a>
               </td>
               <td></td>
               <td></td>
@@ -75,7 +75,7 @@
     </section>
     <footer>
       <div class="footer-btn container">
-        <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-primary pull-right" ng-click="submitPreEngagementForm()">Download Attachment</button>
+        <button class="btn btn-primary pull-right">Download Attachment</button>
       </div>
     </footer>
   </div>    

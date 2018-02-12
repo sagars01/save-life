@@ -72,7 +72,24 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $tr
         .state('submission', {
             url : '/thanks',
             templateUrl : './templates/fifthpage/fifthpage.html'
-        });
+        })
+        .state('registerProduct', {
+            url : '/registerproduct',
+            templateUrl : './templates/register-product/registerProduct.template.html',
+            controller : 'regProdCtrl'
+        })
+        .state('modifyTemplate', {
+            url : '/modifyTemplate',
+            templateUrl : './templates/modify-template/modify.template.html',
+            // controller : 'regProdCtrl'
+        })
+        .state('poc', {
+            url : '/poc',
+            templateUrl : './templates/poc/poc.template.html',
+            // controller : 'regProdCtrl'
+        })
+        
+        
 
         $locationProvider.html5Mode(true);
 });
