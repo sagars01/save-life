@@ -10,6 +10,7 @@ function mainService($http, $q) {
         productList : _productList,
         preengage : _preengage,
         psbFormService : _psbFormService,
+        adminBearer : _adminBearer
     }
     
     function _psbFormService(method , data) {
@@ -142,5 +143,17 @@ function mainService($http, $q) {
                 deferred.reject(reject)
             })
         return deferred.promise
+    }
+
+    function _adminBearer() {
+        var data = [];
+        return {
+            getToken : function(){
+                return data;
+            },
+            setToken : function(setParam) {
+                data = setParam;
+            }
+        }
     }
 }

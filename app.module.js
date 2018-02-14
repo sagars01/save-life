@@ -81,7 +81,7 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $tr
         .state('modifyTemplate', {
             url : '/modifyTemplate',
             templateUrl : './templates/modify-template/modify.template.html',
-            // controller : 'regProdCtrl'
+            controller : 'modifyCtrl'
         })
         .state('poc', {
             url : '/poc',

@@ -5,9 +5,9 @@ app.controller("psbFormController" , function($scope , $state, mainService){
     $scope.getPsbFormData = function() {
         mainService.psbFormService('GET').then(function(response) {
             $scope.tableDataIterator = response;
-            console.log(response);
+            // console.log(response);
         }).catch(function(error){
-            alert(error);
+            // alert(error);
         })
     }
     $scope.getPsbFormData();
@@ -15,7 +15,7 @@ app.controller("psbFormController" , function($scope , $state, mainService){
     $scope.submitPsbForm = function() {
         console.log($scope.tableDataIterator);
         mainService.psbFormService('POST' , $scope.tableDataIterator).then(function(response) {
-            alert("Thanks for your feedback!");
+            // alert("Thanks for your feedback!");
             $state.go("home" , {reload : true});
             // console.log(response);
         }).catch(function(error){
