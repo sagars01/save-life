@@ -10,40 +10,33 @@
             <!--Questionaire-->
             <tr >
               <td>Manager</td>
-              <td><input
-            
-            type = "text" placeholder="Manager Name" /></td>
-            <td><input
-            
-            type = "text" placeholder="Manager Name" /></td>
-            <td><input
-            
-            type = "text" placeholder="Manager Name" /></td>
-            </tr>
+              <td ng-repeat="m in main.manager track by $index">
+                  <input type="text" placeholder="Manager Name">
+              </td>
+              <td>
+                <button class="btn btn-sm btn-primary" ng-click="addField('manager')">Add Manager</button>
+                <button class="btn btn-sm btn-primary" ng-click="removeField('manager')">Remove Manager</button>
+              </td>  
             <tr >
               <td>Product Engineer</td>
-              <td><input
-            
-            type = "text" placeholder="Engineer Name" /></td>
-            <td><input
-            
-            type = "text" placeholder="Engineer Name" /></td>
-            <td><input
-            
-            type = "text" placeholder="Engineer Name" /></td>
+              <td ng-repeat="e in main.engineer track by $index">
+                <input type = "text" placeholder="Engineer Name" />
+              </td>
+              <td>
+                  <button class="btn btn-sm btn-primary" ng-click="addField('engineer')">Add Engineer</button>
+                  <button class="btn btn-sm btn-primary" ng-click="removeField('engineer')">Remove Engineer</button>
+                </td>
             </tr>
             <tr >
               <td>SDL Engineer Name</td>
-              <td><input
-            
-            type = "text" placeholder="SDL Engineer Name" /></td>
-            <td><input
-            
-            type = "text" placeholder="SDL Engineer Name" /></td>
-            <td><input
-            
-            type = "text" placeholder="SDL Engineer Name" /></td>
-            </tr>
+              <td ng-repeat="s in main.sdl track by $index">
+                <input type = "text" placeholder="SDL Engineer Name" />
+              </td>
+              <td>
+                  <button class="btn btn-sm btn-primary" ng-click="addField('sdl')">Add Manager</button>
+                  <button class="btn btn-sm btn-primary" ng-click="removeField('sdl')">Remove Manager</button>
+              </td>
+              </tr>
           </tbody>
         </table>
       </div>
@@ -54,3 +47,16 @@
       </div>
     </footer>
   </div>
+  <style>
+  .table>tbody>tr>td {
+    border : none;
+  }
+  .first-table {
+    border: 1px solid;
+    margin-bottom: 10px;
+    overflow: scroll;
+  }
+  .first-table table {
+    border : none;
+  }
+  </style>

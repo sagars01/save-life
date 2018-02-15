@@ -86,7 +86,7 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $tr
         .state('poc', {
             url : '/poc',
             templateUrl : './templates/poc/poc.template.html',
-            // controller : 'regProdCtrl'
+            controller : 'pocCtrl'
         })
         
         
