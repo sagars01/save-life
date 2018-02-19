@@ -10,24 +10,34 @@
         <div class="form-group">
           <select ng-change="selectedProductChange()" ng-model="selectedProduct" class="form-control" id="sel1">
             <option>Select a product</option>
-            <option ng-repeat="product in productList" ng-value="product.Product_id">
+            <option ng-repeat="product in productList" ng-value="product">
               {{product.Product}}
             </option>
           </select>
+          <select ng-change="versionChange()" 
+                  style="margin-top : 15px" 
+                  ng-disabled="selectedProduct.Product_id == null" 
+                  ng-model="selectedVersion1" class="form-control" id="sel2">  
+            <option>Select a version</option>
+            <option ng-repeat="v in prodVersions" ng-value="v">
+                  {{v}}
+              </option>
+            </select>
         </div>
       </div>
       <!--Option - Products-->
       <!--Buttons - Path PSB | P-->
       <div class="path-wrapper row">
+          <div class="col-sm-2 col-md-2">
+            </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
-          <button class="btn btn-lg btn-primary" ng-click = "redirectToQuestions('pre')">
+          <!-- <button class="btn btn-lg btn-primary" ng-click = "redirectToQuestions('pre')">
           Pre-Engagement
-        </button>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <button class="btn btn-lg btn-primary" ng-click="redirectToQuestions('psb')">
+        </button> -->
+          <button class="btn btn-lg btn-primary" ng-click="redirectToQuestions('psbform')">
           PSB
-        </button>
+        </button>        
+        <div class="col-sm-2 col-md-2">
         </div>
       </div>
     </section>

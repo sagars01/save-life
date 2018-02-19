@@ -11,7 +11,7 @@
             <tr >
               <td>Manager</td>
               <td ng-repeat="m in main.manager track by $index">
-                  <input type="text" placeholder="Manager Name">
+                  <input type="text" ng-model="temp.manager" placeholder="Manager Name">
               </td>
               <td>
                 <button class="btn btn-sm btn-primary" ng-click="addField('manager')">Add Manager</button>
@@ -20,7 +20,7 @@
             <tr >
               <td>Product Engineer</td>
               <td ng-repeat="e in main.engineer track by $index">
-                <input type = "text" placeholder="Engineer Name" />
+                <input type = "text" ng-model="temp.engineer" placeholder="Engineer Name" />
               </td>
               <td>
                   <button class="btn btn-sm btn-primary" ng-click="addField('engineer')">Add Engineer</button>
@@ -30,7 +30,7 @@
             <tr >
               <td>SDL Engineer Name</td>
               <td ng-repeat="s in main.sdl track by $index">
-                <input type = "text" placeholder="SDL Engineer Name" />
+                <input type = "text" ng-model="temp.sdl" placeholder="SDL Engineer Name" />
               </td>
               <td>
                   <button class="btn btn-sm btn-primary" ng-click="addField('sdl')">Add Manager</button>
@@ -43,7 +43,7 @@
     </section>
     <footer>
       <div class="footer-btn container">
-        <button ng-disabled="preEngQuestionform.$invalid" class="btn btn-primary pull-right" ng-click="submitPreEngagementForm()">Save</button>
+        <button ng-click="savePoc()">Save</button>
       </div>
     </footer>
   </div>

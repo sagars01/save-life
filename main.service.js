@@ -1,8 +1,8 @@
 app.factory("mainService" , mainService);
 
-mainService.$inject = ['$http' , '$q'];
+mainService.$inject = ['$http' , '$q' , 'AuthService'];
 
-function mainService($http, $q) { 
+function mainService($http, $q , AuthService) { 
     return {
         loginService : _loginService,
         authService : _authService,
@@ -10,8 +10,45 @@ function mainService($http, $q) {
         productList : _productList,
         preengage : _preengage,
         psbFormService : _psbFormService,
-        adminBearer : _adminBearer
+        registerProduct : _registerProduct,
+        adminBearer : _adminBearer,
+        poc : _poc
     }
+
+    function _poc(data) {
+        var deferred = $q.defer();
+        $http({
+            url:  "http://localhost:4000/registerproduct",
+            method: 'POST',
+            data : data,
+            cache : false
+        })
+            .then(function(response){
+                deferred.resolve(response.data);
+            })
+            .catch(function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+    }
+
+    function _registerProduct(data) {
+        var deferred = $q.defer();
+        $http({
+            url:  "http://localhost:4000/registerproduct",
+            method: 'POST',
+            data : data,
+            cache : false
+        })
+            .then(function(response){
+                deferred.resolve(response.data);
+            })
+            .catch(function(response){
+                deferred.reject(response);
+            });
+            return deferred.promise;
+        }
+    
     
     function _psbFormService(method , data) {
         var deferred = $q.defer();
@@ -42,6 +79,7 @@ function mainService($http, $q) {
 
     function _logoutService() {
         var deferred = $q.defer();
+        AuthService.setAuthorization('user' , 'false');
         $http.get("http://localhost:4000/logout")
             .then(function(response) {
                 deferred.resolve(response.data)
@@ -146,14 +184,13 @@ function mainService($http, $q) {
     }
 
     function _adminBearer() {
-        var data = [];
-        return {
-            getToken : function(){
-                return data;
-            },
-            setToken : function(setParam) {
-                data = setParam;
-            }
-        }
+        var deferred = $q.defer();
+        $http.get("http://localhost:4000/")
+            .then(function(response) {
+                deferred.resolve(response.data)
+            }).catch(function(reject){
+                deferred.reject(reject)
+            })
+        return deferred.promise;
     }
 }

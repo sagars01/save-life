@@ -1,7 +1,7 @@
 app.controller("productController" , function($scope , $state, mainService) {
     $scope.productList = [];
     $scope.selectedProduct = "Select a product";
-    
+    $scope.selectedVersion1 = "Select a version";
     
     $scope.redirectToQuestions = function(routePath) {
         switch (routePath) {
@@ -10,9 +10,8 @@ app.controller("productController" , function($scope , $state, mainService) {
                 $scope.getPostOnProductList('POST' , $scope.selectedProductJSON);
                 $state.go('preengage' , {reload : true});
             break;
-            
-            case 'psb':
-                $state.go('psb' , {reload : true});
+            case 'psbform':
+            $state.go('psbform' , {reload : true});
             break;
         }
     }
@@ -20,9 +19,9 @@ app.controller("productController" , function($scope , $state, mainService) {
     $scope.sendProductId = function() {
 
     }
+
     $scope.getPostOnProductList = function(method , dataArgs) {
         mainService.productList(method, dataArgs).then(function(response){
-            // console.log(response);
             $scope.productList = response;
             return response;
         }).catch(function(error){
@@ -32,17 +31,39 @@ app.controller("productController" , function($scope , $state, mainService) {
     }
     //Init Call
     $scope.getPostOnProductList('GET');
+    $scope.selectedVersion1 = "Select a version";
+    
+
+    $scope.tempSelectedProductJSON = {
+        // product_id : $scope.selectedProduct.Product_id,
+        // version :   $scope.selectedVersion1
+        product_id : null,
+        version : null
+    };
     
     $scope.selectedProductChange = function() {
-        $scope.tempSelectedProductJSON = {
-        product_id : $scope.selectedProduct
-    }
-    $scope.selectedProductJSON = angular.toJson($scope.tempSelectedProductJSON);
+        $scope.tempSelectedProductJSON.product_id = $scope.selectedProduct.Product_id;
+        $scope.prodVersions = $scope.selectedProduct.Versions;
+        // $scope.selectedProductJSON = angular.toJson($scope.tempSelectedProductJSON);
         var valueSelected = $scope.selectedProduct;
         if(valueSelected != "Select a product") {
             $(".path-wrapper").css({"display" : "block"});
           }else {
             $(".path-wrapper").css({"display" : "none"});
           }
+    }
+    $scope.versionChange = function() {
+        //console.log($scope.selectedVersion1);
+        $scope.tempSelectedProductJSON.version = $scope.selectedVersion1;
+        $scope.selectedProductJSON = angular.toJson($scope.tempSelectedProductJSON);
+        $scope.setKeyid('POST' , $scope.selectedProductJSON);
+    }
+
+    $scope.setKeyid = function(method , data) {
+        mainService.productList(method , data).then(function(response){
+            console.log(response);
+        }).catch(function(error) {
+            console.log(error);
+        })
     }
 })

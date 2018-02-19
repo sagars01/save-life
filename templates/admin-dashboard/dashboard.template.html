@@ -9,22 +9,22 @@
           <thead class="table-header-2">
             <tr>
               <td>
-                <select>
-                  <option>Product</option>
-                  <option>WFA</option>
-                  <option>ONTAP</option>
-                  <option>OCUM</option>
-                  <option>WFA API</option>
+                <select ng-change="selectedProductChange()" ng-model="selectedProduct" class="form-control" id="sel1">
+                  <option>Select a product</option>
+                  <option ng-repeat="product in productList" ng-value="product">
+                    {{product.Product}}
+                  </option>
                 </select>
               </td>
               <td>
-                <select>
-                  <option>Version</option>
-                  <option>1.0</option>
-                  <option>2.0</option>
-                  <option>3.0</option>
-                  <option>4.0</option>
-                </select>
+                <select ng-change="versionChange()" 
+                        ng-disabled="selectedProduct.Product_id == null" 
+                        ng-model="selectedVersion" class="form-control" id="sel2">  
+                        <option>{{selectedVersion}}</option>      
+                        <option ng-repeat="v in versions" ng-value="v">
+                        {{v}}
+                        </option>
+                  </select>
               </td>
               <th>
                 <button class="btn btn-lg btn-primary pull-right" ng-click="goToRegister()">Register Product</button>
@@ -34,13 +34,13 @@
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody ng-if="selectedVersion != 'Select a version'">
             <!--Questionaire-->
             <tr>
               <td>Pre-Engagement</td>
               <td>
-                <a ui-sref = "preengage">New</a>
-                <a ui-sref = "preengage">View</a>
+                <button class="btn btn-xs btn-primary" ng-disabled = "selectedVersion == 'Select a version' " ng-click="goToForms('preengage' , 'new')">New</button>
+                <button class="btn btn-xs btn-primary" ng-disabled = "selectedVersion == 'Select a version' " ng-click="goToForms('preengage' , 'view')">View</button>
               </td>
               <td></td>
               <td></td>
@@ -48,7 +48,9 @@
             <tr >
               <td>PSB</td>
               <td>
-                <a ui-sref = "psbform">View</a>
+                  <button class="btn btn-xs btn-primary" ng-disabled = "selectedVersion == 'Select a version' " 
+                  ng-click="goToForms('psbform')">View</button>
+                <!-- <a ui-sref = "psbform">View</a> -->
               </td>
               <td></td>
               <td></td>

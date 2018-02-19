@@ -1,34 +1,20 @@
 'use strict';
 var app = angular.module("save-app" , ['ui.router']);
 
-// Run FUnction
-// angular.module("save-app").run(
-//     function ($rootScope, $state, $transitions , $location , $timeout, mainService ) {
-//         $transitions.onStart({to:'*'}, function ($state){
-//             // do stuff on every transition such as change page title [global scope here]
-//             // console.log("Hi");
-//             var stateCounter = 0;
-//             mainService.authService().then(function(response){
-//                 if(response[0].Logged_in == true && response[0].Logged_in != null ) {
-//                     // Do Nothing                    
-//                 }else {
-//                     $timeout(function(){
-//                         $location.path("/login");
-//                     })
-//                 }
-//             }).catch(function(err){
-//                 $state.go("login");
-//             })
-//         }
-//     )
-// })
-
-
-app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $transitionsProvider , mainServiceProvider) {
-
-    $transitionsProvider.onStart({ to: '**' }, function(transtion) {
-        // transtion.injector().get('$rootScope').ngProgress.start();
+// Run Function
+angular.module("save-app").run(function($transitions ,$location, AuthService){
+    $transitions.onStart({} , function(trans){
+        var isAuth = AuthService.authorized('user');
+        if(isAuth == 'false' || isAuth == null) {
+            $location.url('/login');
+        }
     })
+
+    $transitions.onSuccess({to : 'login' , from : '**' } , function() {
+        AuthService.setAuthorization('user' , 'false');
+    })
+});
+app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $transitionsProvider , mainServiceProvider) {
 
     $urlRouterProvider.otherwise('/home');
 
@@ -47,15 +33,15 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $tr
         .state('dashboard', {
             url: '/dashboard',
             templateUrl : './templates/admin-dashboard/dashboard.template.html',
-            controller : 'dashboardController',
-            resolve : function() {
-                console.log("true");
-            }
+            controller : 'dashboardController'
         })
         .state('preengage', {
-            url : '/preengage',
+            url : '/preengage/:process',
             templateUrl : './templates/secondpage/secondpage.html',
-            controller : 'preengageController'            
+            controller : 'preengageController',
+            params : {
+                process : null
+            }            
         })
         
         .state('psb', {

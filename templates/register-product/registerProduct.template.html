@@ -10,25 +10,25 @@
             <!--Questionaire-->
             <tr >
               <td>Product</td>
-              <td><input
-            type = "text" placeholder="" /></td>
+              <td>
+                <input ng-model="product_name" type = "text" placeholder="" />
+          </td> 
             </tr>
             <tr >
               <td>Version</td>
-              <td><input
-            type = "text" placeholder="" /></td>
+              <td><input ng-model="version"  type = "text" /></td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>POC</td>
               <td><input type = "text" placeholder="" /></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
     </section>
     <footer>
       <div class="footer-btn container">
-        <button class="btn btn-primary pull-right" >Save</button>
+        <button class="btn btn-primary pull-right" ng-click="addProduct()" >Save</button>
       </div>
     </footer>
   </div>
