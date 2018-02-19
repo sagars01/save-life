@@ -18,7 +18,7 @@ function mainService($http, $q , AuthService) {
     function _poc(data) {
         var deferred = $q.defer();
         $http({
-            url:  "http://localhost:4000/registerproduct",
+            url:  "http://localhost:4000/poc",
             method: 'POST',
             data : data,
             cache : false

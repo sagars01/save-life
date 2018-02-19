@@ -3,10 +3,11 @@ app.controller("pocCtrl" , function($scope , mainService){
         manager : [''] , 
         engineer : [''] , 
         sdl : ['']
-    }
+    };
     $scope.temp = { 
         manager : null,
-        
+        product_engineer : null,
+        sdl_engineer: null
     };
 
     $scope.addField = function(arrayParam) {
@@ -18,8 +19,9 @@ app.controller("pocCtrl" , function($scope , mainService){
         }
     }
     $scope.savePoc = function() {
-        mainService.poc($scope.temp).then(function(response){
+        mainService.poc(angular.toJson($scope.temp)).then(function(response){
             console.log(response);
+            alert("User Added");
         }).catch(function(err){
             console.log(err);
         })

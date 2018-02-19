@@ -10,7 +10,8 @@
             <!--Questionaire-->
             <tr >
               <td>Manager</td>
-              <td ng-repeat="m in main.manager track by $index">
+              <!-- <td ng-repeat="m in main.manager track by $index"> -->
+                <td>
                   <input type="text" ng-model="temp.manager" placeholder="Manager Name">
               </td>
               <td>
@@ -19,8 +20,9 @@
               </td>  
             <tr >
               <td>Product Engineer</td>
-              <td ng-repeat="e in main.engineer track by $index">
-                <input type = "text" ng-model="temp.engineer" placeholder="Engineer Name" />
+              <!-- <td ng-repeat="e in main.engineer track by $index"> -->
+                <td>
+                <input type = "text" ng-model="temp.product_engineer" placeholder="Engineer Name" />
               </td>
               <td>
                   <button class="btn btn-sm btn-primary" ng-click="addField('engineer')">Add Engineer</button>
@@ -29,8 +31,9 @@
             </tr>
             <tr >
               <td>SDL Engineer Name</td>
-              <td ng-repeat="s in main.sdl track by $index">
-                <input type = "text" ng-model="temp.sdl" placeholder="SDL Engineer Name" />
+              <!-- <td ng-repeat="s in main.sdl track by $index"> -->
+              <td>
+                <input type = "text" ng-model="temp.sdl_engineer" placeholder="SDL Engineer Name" />
               </td>
               <td>
                   <button class="btn btn-sm btn-primary" ng-click="addField('sdl')">Add Manager</button>
