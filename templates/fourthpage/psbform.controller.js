@@ -1,4 +1,9 @@
-app.controller("psbFormController" , function($scope , $state, mainService){
+app.controller("psbFormController" , function($scope , $state, mainService, isAdminViewing){
+    
+    if(isAdminViewing == "true") {
+        $scope.isAdminViewing = true;
+    }
+    
     $scope.tableDataIterator = [];
     $scope.statusOptions = ["Not_Answered" ,"PASS", "FAIL", "APPLICABLE" , "BACKLOG"];
     

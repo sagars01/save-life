@@ -1,7 +1,11 @@
-app.controller("productController" , function($scope , $state, mainService) {
+app.controller("productController" , function($scope , $state, mainService , isUserPermitted, isAdminService) {
     $scope.productList = [];
     $scope.selectedProduct = "Select a product";
     $scope.selectedVersion1 = "Select a version";
+
+    if(isUserPermitted == false) {
+        $state.go('accessdenied');
+    }
     
     $scope.redirectToQuestions = function(routePath) {
         switch (routePath) {
@@ -46,11 +50,11 @@ app.controller("productController" , function($scope , $state, mainService) {
         $scope.prodVersions = $scope.selectedProduct.Versions;
         // $scope.selectedProductJSON = angular.toJson($scope.tempSelectedProductJSON);
         var valueSelected = $scope.selectedProduct;
-        if(valueSelected != "Select a product") {
-            $(".path-wrapper").css({"display" : "block"});
-          }else {
-            $(".path-wrapper").css({"display" : "none"});
-          }
+        // if(valueSelected != "Select a product") {
+        //     $(".path-wrapper").css({"display" : "block"});
+        //   }else {
+        //     $(".path-wrapper").css({"display" : "none"});
+        //   }
     }
     $scope.versionChange = function() {
         //console.log($scope.selectedVersion1);

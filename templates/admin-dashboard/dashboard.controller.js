@@ -1,4 +1,9 @@
-app.controller("dashboardController" , function($scope , $http, $state, mainService) {
+app.controller("dashboardController" , function($scope , $http, $state, mainService , isUserPermitted) {
+    
+    if(isUserPermitted == false) {
+        $state.go('accessdenied');
+    }
+
     $scope.goToRegister = function() {
         $state.go("registerProduct" , {reload : true});
     }
@@ -13,6 +18,8 @@ app.controller("dashboardController" , function($scope , $http, $state, mainServ
         })
     }
     $scope._init();
+    
+    
 
     //Object to store posting Data.
     $scope.postData = {

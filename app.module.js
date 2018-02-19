@@ -2,11 +2,12 @@
 var app = angular.module("save-app" , ['ui.router']);
 
 // Run Function
-angular.module("save-app").run(function($transitions ,$location, AuthService){
-    $transitions.onStart({} , function(trans){
+angular.module("save-app").run(function($transitions ,$location, AuthService , isAdminService , $state){
+    $transitions.onStart({} , function(trans , toState , toParams, fromState, fromParam){
         var isAuth = AuthService.authorized('user');
         if(isAuth == 'false' || isAuth == null) {
             $location.url('/login');
+            // event.stopPropagation();
         }
     })
 
@@ -23,17 +24,45 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $tr
             url : '/login',
             templateUrl : './templates/login/login.html',
             controller : 'loginController'
-
+        })
+        .state('404' , {
+            url : '/login',
+            templateUrl : './templates/login/login.html',
+            controller : 'loginController'
+        })
+        .state('accessdenied' , {
+            url : '/accessdenied',
+            template : `<h4>You are not authorized!</h4>`
         })
         .state('home', {
             url: '/home',
             templateUrl : './templates/firstpage/firstpage.html',
-            controller : 'productController'
+            controller : 'productController',
+            resolve : {
+                isUserPermitted : function(isAdminService , $location , $q, $timeout, $state) {
+                    var isAdmin = isAdminService.isAdmin('isAdmin');
+                    if(isAdmin == "true") {
+                        return false;
+                    }else {
+                        return true;
+                    }
+                }
+            }
         })
         .state('dashboard', {
             url: '/dashboard',
             templateUrl : './templates/admin-dashboard/dashboard.template.html',
-            controller : 'dashboardController'
+            controller : 'dashboardController',
+            resolve : {
+                isUserPermitted : function(isAdminService , $location , $q, $timeout, $state) {
+                    var isAdmin = isAdminService.isAdmin('isAdmin');
+                    if(isAdmin == "true") {
+                        return true;
+                    }else {
+                        return false;
+                    }
+                }
+            }
         })
         .state('preengage', {
             url : '/preengage/:process',
@@ -46,13 +75,18 @@ app.config(function($stateProvider, $urlRouterProvider , $locationProvider , $tr
         
         .state('psb', {
             url : '/psb',
-            templateUrl : './templates/thirdpage/thirdpage.html'       
+            templateUrl : './templates/thirdpage/thirdpage.html',   
         })
         
         .state('psbform', {
             url : '/psbform',
             templateUrl : './templates/fourthpage/fourthpage.html',
-            controller : 'psbFormController'
+            controller : 'psbFormController',
+            resolve : {
+                isAdminViewing : function(isAdminService) {
+                    return isAdminService.isAdmin('isAdmin');
+                }
+            }  
         })
         
         .state('submission', {

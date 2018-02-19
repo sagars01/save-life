@@ -1,4 +1,4 @@
-app.controller("loginController" , function($scope , $http, $state, mainService , AuthService) {
+app.controller("loginController" , function($scope , $http, $state, mainService , AuthService, isAdminService) {
     $scope.loginData = {
       // Stores the Login Data  
     };
@@ -8,10 +8,12 @@ app.controller("loginController" , function($scope , $http, $state, mainService 
                     var loginState = response[0];
                     if(loginState.Logged_in && loginState.Is_admin == 1) {
                         AuthService.setAuthorization('user' , 'true');
+                        isAdminService.setAdmin('isAdmin' , 'true');
                         $state.go("dashboard");
                     }else {
                         $state.go("home");
                         AuthService.setAuthorization('user' , 'true');
+                        isAdminService.setAdmin('isAdmin' , 'false');
                     }
                 })
     }

@@ -34,7 +34,7 @@
           <!-- <button class="btn btn-lg btn-primary" ng-click = "redirectToQuestions('pre')">
           Pre-Engagement
         </button> -->
-          <button class="btn btn-lg btn-primary" ng-click="redirectToQuestions('psbform')">
+          <button ng-hide="selectedProduct == 'Select a product' || selectedVersion1 == 'Select a version' " class="btn btn-lg btn-primary" ng-click="redirectToQuestions('psbform')">
           PSB
         </button>        
         <div class="col-sm-2 col-md-2">
@@ -42,9 +42,7 @@
       </div>
     </section>
     <style>
-        .path-wrapper {
-         display : none;
-        }
+        
         .path-wrapper div {
           margin-bottom : 10px;
         }

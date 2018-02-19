@@ -22,12 +22,16 @@
             <td>{{tableData.requirement}}</td>
             <td>{{tableData.reason}}</td>
             <td>
-              <select ng-model="tableData.status" ng-required = "true"> 
+              <select ng-model="tableData.status" ng-required = "true" ng-disabled="isAdminViewing"> 
                 <option 
                  ng-repeat="statusOption in statusOptions">{{statusOption}}</option>
               </select>
             </td>
-            <td><input ng-required="true" ng-model="tableData.justification" type = "text" placeholder="Put in justification" /></td>
+            <td><input 
+              ng-required="true" 
+              ng-model="tableData.justification" 
+              ng-disabled="isAdminViewing"
+              type = "text" placeholder="Put in justification" /></td>
           </tr>
           <!-- <tr>
             <td>ASR-10</td>
@@ -50,7 +54,10 @@
   </section>
   <footer>
     <div class="footer-btn container">
-      <button class="btn btn-lg btn-primary pull-right" ng-disabled="psbForm.$invalid" ng-click="submitPsbForm()">Submit</button>
+      <button class="btn btn-lg btn-primary pull-right" 
+      ng-disabled="psbForm.$invalid" 
+      ng-click="submitPsbForm()"
+      ng-if="!isAdminViewing">Submit</button>
     </div>
   </footer>
 

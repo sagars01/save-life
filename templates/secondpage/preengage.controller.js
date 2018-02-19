@@ -16,7 +16,7 @@ app.controller("preengageController" , function($scope , $state, mainService) {
         var tempArray = [];
         if(type == 'new') {
             angular.forEach(arrayParam , function(el) {
-                el.Question_response = "Enter";
+                el.Question_response = "";
                 
                 tempArray.push(el);
             })
